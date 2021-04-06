@@ -24,7 +24,7 @@ public class SignupTabFragment  extends Fragment {
 
         email = root.findViewById(R.id.email);
         pass =  root.findViewById(R.id.pass);
-        mobile = root.findViewById(R.id.username);
+        mobile = root.findViewById(R.id.mobile);
         cpass =  root.findViewById(R.id.cpass);
         signup = root.findViewById(R.id.signup);
 
