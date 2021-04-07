@@ -3,15 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <include layout="@layout/actionbar"/>
+
+<RelativeLayout
+    android:layout_gravity="center"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="90dp"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginBottom="20dp"
-    android:layout_gravity="center"
+
+    android:gravity="center"
     android:background="@drawable/single_image_bg"
     tools:context=".UploadImages">
+
 
     <ImageView
         android:layout_width="match_parent"
@@ -19,7 +27,7 @@
         android:src="@drawable/ic_image"
         android:background="@drawable/edit_text_bg"
         android:scaleType="fitCenter"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:padding="10dp"
@@ -35,7 +43,7 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/edit_text_bg"
         android:id="@+id/inputImageName"
-
+        android:textColor="@color/white"
         android:layout_below="@+id/imageViewAdd"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"/>
@@ -60,7 +68,7 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         app:backgroundTint="@null"
         android:indeterminateTint="@android:color/white"
-        android:scrollbarStyle="insideInset"
+
         android:layout_below="@+id/textViewProgress"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp" />
@@ -81,4 +89,5 @@
 
 
 
+</RelativeLayout>
 </RelativeLayout>
