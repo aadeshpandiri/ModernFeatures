@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class OnBoardingFragment3 extends Fragment {
     @Nullable
     @Override
@@ -25,6 +27,7 @@ public class OnBoardingFragment3 extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(),LoginActivity.class);
                 startActivity(i);
+                CustomIntent.customType(getActivity(),"right-to-left");
             }
         });
         return root;

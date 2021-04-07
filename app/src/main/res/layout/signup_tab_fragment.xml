@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -9,9 +10,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintWidth_percent=".8"
-        app:layout_constraintVertical_bias=".15"
+        app:layout_constraintVertical_bias=".17"
         app:layout_constraintHorizontal_bias=".5"
-        android:hint="Email"
+        android:hint="Enter Email"
+        android:drawableLeft="@drawable/email"
+        android:paddingStart="10dp"
+        android:textColorHint="#757575"
+        android:padding="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
         android:background="@drawable/edit_text_bg"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -22,13 +30,20 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/mobile"
+        android:id="@+id/username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Mobile Number"
+        android:hint="Enter username"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:drawableLeft="@drawable/username"
+        android:paddingStart="10dp"
+        android:textColorHint="#757575"
+        android:padding="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
         android:background="@drawable/edit_text_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,37 +55,51 @@
         />
 
     <EditText
-        android:id="@+id/pass"
+        android:id="@+id/mobile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Password"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:hint="Enter mobile number"
+        android:drawableLeft="@drawable/phone"
+        android:paddingStart="10dp"
+        android:textColorHint="#757575"
+        android:padding="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
         android:background="@drawable/edit_text_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mobile"
-        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintVertical_bias="0.1"
         app:layout_constraintWidth_percent=".8"
 
         />
 
     <EditText
-        android:id="@+id/cpass"
+        android:id="@+id/pass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Confirm Password"
+        android:hint="Enter Password"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:drawableLeft="@drawable/ic_baseline_lock_24"
+        android:paddingStart="10dp"
+        android:textColorHint="#757575"
+        android:padding="8dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
         android:background="@drawable/edit_text_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pass"
-        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintTop_toBottomOf="@+id/mobile"
+        app:layout_constraintVertical_bias="0.12"
         app:layout_constraintWidth_percent=".8"
 
         />
@@ -79,7 +108,7 @@
         android:id="@+id/signup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="Register"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,11 +116,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="@color/white"
-
+        app:backgroundTint="@null"
         android:background="@drawable/button_bg"
-        app:layout_constraintVertical_bias="0.9"
-        app:layout_constraintWidth_percent=".8" />
+        app:layout_constraintVertical_bias="0.75"
+        app:layout_constraintWidth_percent=".8"
+        tools:ignore="OnClick" />
 
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

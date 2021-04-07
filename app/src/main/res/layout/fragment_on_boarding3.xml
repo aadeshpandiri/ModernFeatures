@@ -108,8 +108,8 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/rightarrow"
+        app:backgroundTint="@color/white"
+        android:src="@drawable/next"
         app:fabCustomSize="50dp"
         app:fabSize="normal"
         app:layout_constraintVertical_bias="1"
@@ -117,6 +117,7 @@
         android:layout_marginRight="25dp"
         android:layout_margin="16dp"
         android:layout_marginBottom="25dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
