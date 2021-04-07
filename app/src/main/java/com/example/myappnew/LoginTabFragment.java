@@ -30,6 +30,7 @@ public class LoginTabFragment  extends Fragment {
     private Button login;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+    public static String idforfirebase;
 
     @Nullable
     @Override
@@ -108,6 +109,8 @@ public class LoginTabFragment  extends Fragment {
 
                      Toast.makeText(getActivity(), "Logged-In Successfully", Toast.LENGTH_LONG).show();
                      progressBar.setVisibility(View.GONE);
+                     //idforfirebase = email;
+                     idforfirebase= FirebaseAuth.getInstance().getCurrentUser().getUid();
                      Intent i = new Intent(getActivity(),HomeActivity.class);
                      startActivity(i);
                      CustomIntent.customType(getActivity(),"right-to-left");

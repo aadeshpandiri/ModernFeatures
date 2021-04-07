@@ -12,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Myappnew"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".introductoryActivity">
+        <activity android:name=".ViewActivity"></activity>
+        <activity android:name=".UploadImages" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+        <activity android:name=".introductoryActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
