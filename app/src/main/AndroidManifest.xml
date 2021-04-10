@@ -12,12 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewActivity"></activity>
+        <activity android:name=".ForgotPassword"></activity>
+        <activity android:name=".ViewActivity" />
         <activity android:name=".UploadImages" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
-        <activity android:name=".introductoryActivity"
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity
+            android:name=".introductoryActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

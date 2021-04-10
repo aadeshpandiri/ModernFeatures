@@ -2,6 +2,7 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/autour_one</item>
+        <item>@font/bubblegum_sans</item>
         <item>@font/fredoka_one</item>
     </array>
 </resources>

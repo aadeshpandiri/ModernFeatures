@@ -1,12 +1,18 @@
 package com.example.myappnew;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,6 +86,13 @@ public class UploadImages extends AppCompatActivity {
         btnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(inputImageName.getText().toString().isEmpty())
+                {
+                    inputImageName.setError("Name is required");
+                    inputImageName.requestFocus();
+                    return;
+
+                }
                 final String imageName = inputImageName.getText().toString();
                 if(isImageAdded != false && imageName != null)
                 {
@@ -88,6 +101,8 @@ public class UploadImages extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }
@@ -141,5 +156,14 @@ public class UploadImages extends AppCompatActivity {
             imageViewAdd.setImageURI(imageUri);
 
         }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if ((keyCode == KeyEvent.KEYCODE_BACK))
+        {
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

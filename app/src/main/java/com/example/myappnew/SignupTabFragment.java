@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,11 +18,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.airbnb.lottie.utils.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.BreakIterator;
 
@@ -31,6 +38,10 @@ public class SignupTabFragment  extends Fragment {
     private EditText etemail,etmobile,etpass,etusername;
     private Button signup;
     private FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    DatabaseReference myref;
+    public int c=0;
+    ImageView signupimg;
 
     private ProgressBar progressBar;
     @Nullable
@@ -48,6 +59,7 @@ public class SignupTabFragment  extends Fragment {
         etusername =  root.findViewById(R.id.username);
         etpass =  (EditText)root.findViewById(R.id.pass);
         progressBar = (ProgressBar)root.findViewById(R.id.progressbar);
+        signupimg = root.findViewById(R.id.imageView2);
 
 
         signup = root.findViewById(R.id.signup);
@@ -57,6 +69,7 @@ public class SignupTabFragment  extends Fragment {
         etmobile.setTranslationY(800);
         etusername.setTranslationY(800);
         signup.setTranslationY(800);
+        signupimg.setTranslationX(800);
 
         float v=0;
         etemail.setAlpha(v);
@@ -64,7 +77,9 @@ public class SignupTabFragment  extends Fragment {
         etusername.setAlpha(v);
         etmobile.setAlpha(v);
         signup.setAlpha(v);
+        signupimg.setAlpha(v);
 
+        signupimg.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
         etemail.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(300).start();
         etpass.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(500).start();
         etmobile.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(500).start();
@@ -98,12 +113,12 @@ public class SignupTabFragment  extends Fragment {
         }
 
         else if(username.isEmpty()) {
-            etusername.setError("Confirm Password is required");
+            etusername.setError("Username is required");
             etusername.requestFocus();
             return;
         }
         else if(mobile.isEmpty()) {
-            etmobile.setError("username is required");
+            etmobile.setError("Mobile Number is required");
             etmobile.requestFocus();
             return;
         }
@@ -129,45 +144,62 @@ public class SignupTabFragment  extends Fragment {
         else {
 
             progressBar.setVisibility(View.VISIBLE);
+             int res = checkEmailExists(email,username,mobile,password);
+             if(res==0)
+             {
+
+                 mAuth.createUserWithEmailAndPassword(email, password)
+                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                             @Override
+                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                 if (task.isSuccessful()) {
+                                     User user = new User(email, mobile, username, password);
+                                     FirebaseDatabase.getInstance().getReference("Users")
+                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                         @Override
+                                         public void onComplete(@NonNull Task<Void> task) {
+                                             if (task.isSuccessful()) {
+
+                                                 etemail.setText("");
+                                                 etusername.setText("");
+                                                 etmobile.setText("");
+                                                 etpass.setText("");
+
+                                                 Toast.makeText(getActivity(), "User has been registered successfully", Toast.LENGTH_LONG).show();
+                                                 progressBar.setVisibility(View.GONE);
+
+                                                 Intent i = new Intent(getActivity(),LoginActivity.class);
+                                                 startActivity(i);
+                                                 CustomIntent.customType(getActivity(),"right-to-left");
+                                             } else {
+
+                                                 Toast.makeText(getActivity(), "Failed to register in Database ! Try Again !", Toast.LENGTH_SHORT).show();
+                                                 progressBar.setVisibility(View.GONE);
+                                             }
+                                         }
+
+                                     });
+                                 } else {
+                                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                         Toast.makeText(getActivity(), "User with this email already exist.", Toast.LENGTH_SHORT).show();
+                                         //System.out.println("loginerror");
+                                     }
+                                      else {
+                                         Toast.makeText(getActivity(), "Failed to register! Try Again !", Toast.LENGTH_SHORT).show();
+                                         progressBar.setVisibility(View.GONE);
+                                     }
+                                 }
+                             }
+                         });
+
+             }
+             else
+             {
+                 Toast.makeText(getActivity(), "Failed to register! Try Again !", Toast.LENGTH_SHORT).show();
+             }
 
 
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                User user = new User(email, mobile, username, password);
-                                FirebaseDatabase.getInstance().getReference("Users")
-                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()) {
-
-                                            etemail.setText("");
-                                            etusername.setText("");
-                                            etmobile.setText("");
-                                            etpass.setText("");
-
-                                            Toast.makeText(getActivity(), "User has been registered successfully", Toast.LENGTH_LONG).show();
-                                            progressBar.setVisibility(View.GONE);
-
-                                            Intent i = new Intent(getActivity(),LoginActivity.class);
-                                            startActivity(i);
-                                            CustomIntent.customType(getActivity(),"right-to-left");
-                                        } else {
-                                            Toast.makeText(getActivity(), "Failed to register in Database ! Try Again !", Toast.LENGTH_SHORT).show();
-                                            progressBar.setVisibility(View.GONE);
-                                        }
-                                    }
-
-                                });
-                            } else {
-                                Toast.makeText(getActivity(), "Failed to register! Try Again !", Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        }
-                    });
 
 
 
@@ -176,4 +208,50 @@ public class SignupTabFragment  extends Fragment {
 
 
     }
+
+    public int checkEmailExists(String ev, String username,String mobile,String password) {
+
+        String email =  EncodeString(ev);
+        myref = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid());
+         EncodeString(email);
+        if(!email.trim().isEmpty() && !username.trim().isEmpty()) {
+            myref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.child(email).exists())
+                    {
+                        c=1;
+                        Toast.makeText(getActivity(), "Email ID Already Exist !", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else if(snapshot.child(username).exists())
+                    {
+                        c=1;
+                        Toast.makeText(getActivity(), "Username Already Exist !", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+        else
+        {
+             c=0;
+        }
+        return c;
+    }
+
+    public static String EncodeString(String string) {
+        return string.replace(".", "_");
+    }
+
+    public static String DecodeString(String string) {
+        return string.replace("_", ".");
+    }
+
 }

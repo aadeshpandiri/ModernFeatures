@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,7 +43,7 @@ public class introductoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_introductory);
 
         appName = (TextView)findViewById(R.id.appname);
-        splashImage = (ImageView)findViewById(R.id.img);
+        //splashImage = (ImageView)findViewById(R.id.img);
         lottieAnimationView =  findViewById(R.id.lottie);
 
         viewPager = findViewById(R.id.pager);
@@ -52,9 +53,16 @@ public class introductoryActivity extends AppCompatActivity {
         anim = AnimationUtils.loadAnimation(this,R.anim.o_b_anim);
         viewPager.startAnimation(anim);
 
-        splashImage.animate().translationY(-2700).setDuration(1000).setStartDelay(4000);
-        appName.animate().translationY(1400).setDuration(1000).setStartDelay(4000);
-        lottieAnimationView.animate().translationY(1700).setDuration(1000).setStartDelay(4000);
+        Animation animation = new TranslateAnimation(0, 50,0, 0);
+        animation.setDuration(2700);
+        animation.setFillAfter(true);
+
+        lottieAnimationView.startAnimation(animation);
+
+
+//        splashImage.animate().translationY(-2700).setDuration(1000).setStartDelay(4000);
+       appName.animate().translationY(-1200).setDuration(2700).setStartDelay(0);
+        lottieAnimationView.animate().translationX(2000).setDuration(2000).setStartDelay(2900);
 
         new Handler().postDelayed(new Runnable() {
             @Override
