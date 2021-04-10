@@ -2,103 +2,159 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/vi_bg"
+    android:layout_marginTop="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-    
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:background="@drawable/vi_bg"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="10dp"
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintWidth_percent=".8"
-        app:layout_constraintVertical_bias=".3"
-        app:layout_constraintHorizontal_bias=".5"
-        android:hint="Enter Email"
-        android:drawableLeft="@drawable/email"
-        android:paddingStart="10dp"
-        android:textColorHint="#757575"
-        android:padding="8dp"
-        android:autoSizeTextType="uniform"
-        android:gravity="center_horizontal"
-        android:textAlignment="center"
-        android:background="@drawable/edit_text_bg"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            android:elevation="8dp"
 
-    <EditText
-        android:id="@+id/pass"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Enter Password"
-        android:paddingLeft="20dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:drawableLeft="@drawable/ic_baseline_lock_24"
-        android:paddingStart="10dp"
-        android:textColorHint="#757575"
-        android:padding="8dp"
-        android:autoSizeTextType="uniform"
-        android:gravity="center_horizontal"
-        android:textAlignment="center"
-        android:background="@drawable/edit_text_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintVertical_bias="0.13"
-        app:layout_constraintWidth_percent=".8"
+            android:paddingStart="32dp"
+            app:cardCornerRadius="8dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingBottom="10dp"
 
-        />
+            >
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/white"
-        app:backgroundTint="@null"
-        android:background="@drawable/button_bg"
-        app:layout_constraintVertical_bias="0.7"
-        app:layout_constraintWidth_percent=".8" />
-
-    <TextView
-        android:id="@+id/forgotpass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Forgot Password"
-        app:layout_constraintVertical_bias="0.05"
-        app:layout_constraintHorizontal_bias="1"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/pass"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pass"/>
-
-    <ProgressBar
-        android:id="@+id/progressbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="50dp"
+                android:layout_marginBottom="30dp"
+                android:orientation="vertical">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/form_bg"
+                android:paddingBottom="20dp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="330dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="32dp"
+                    android:src="@drawable/login_imgview"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintWidth_percent=".8"
+                    app:layout_constraintVertical_bias=".3"
+                    app:layout_constraintHorizontal_bias=".5"
+                    android:hint="Enter email"
+                    android:drawableLeft="@drawable/email"
+                    android:paddingStart="10dp"
+                    android:textColorHint="#757575"
+                    android:padding="8dp"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:background="@drawable/edit_text_bg"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <EditText
+                    android:id="@+id/pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter password"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:drawableLeft="@drawable/ic_baseline_lock_24"
+                    android:paddingStart="10dp"
+                    android:textColorHint="#757575"
+                    android:padding="8dp"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:background="@drawable/edit_text_bg"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/forgotpass"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Forgot Password ?"
+                    app:layout_constraintVertical_bias="0.05"
+                    app:layout_constraintHorizontal_bias="1"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_gravity="right"
+                    android:layout_marginBottom="20dp"
+
+                   />
+
+                <Button
+                    android:id="@+id/login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/button_bg"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    />
 
 
 
+
+
+
+            </LinearLayout>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center" />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
