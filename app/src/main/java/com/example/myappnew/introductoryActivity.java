@@ -61,7 +61,7 @@ public class introductoryActivity extends AppCompatActivity {
 
 
 //        splashImage.animate().translationY(-2700).setDuration(1000).setStartDelay(4000);
-       appName.animate().translationY(-1200).setDuration(2700).setStartDelay(0);
+       appName.animate().translationY(-1400).setDuration(2700).setStartDelay(0);
         lottieAnimationView.animate().translationX(2000).setDuration(2000).setStartDelay(2900);
 
         new Handler().postDelayed(new Runnable() {

@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingBottom="50dp"
+            
 
             >
 
@@ -60,6 +60,7 @@
 
                 <EditText
                     android:id="@+id/email"
+                    android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintWidth_percent=".8"
@@ -86,6 +87,7 @@
 
                 <EditText
                     android:id="@+id/username"
+                    android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter username"
@@ -108,6 +110,7 @@
 
                 <EditText
                     android:id="@+id/mobile"
+                    android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter mobile number"
@@ -130,6 +133,7 @@
 
                 <EditText
                     android:id="@+id/pass"
+                    android:textColor="@color/black"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter password"

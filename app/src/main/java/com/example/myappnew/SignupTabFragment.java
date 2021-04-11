@@ -144,60 +144,46 @@ public class SignupTabFragment  extends Fragment {
         else {
 
             progressBar.setVisibility(View.VISIBLE);
-             int res = checkEmailExists(email,username,mobile,password);
-             if(res==0)
-             {
 
-                 mAuth.createUserWithEmailAndPassword(email, password)
-                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                             @Override
-                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                 if (task.isSuccessful()) {
-                                     User user = new User(email, mobile, username, password);
-                                     FirebaseDatabase.getInstance().getReference("Users")
-                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                         @Override
-                                         public void onComplete(@NonNull Task<Void> task) {
-                                             if (task.isSuccessful()) {
 
-                                                 etemail.setText("");
-                                                 etusername.setText("");
-                                                 etmobile.setText("");
-                                                 etpass.setText("");
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                User user = new User(email, mobile, username, password);
+                                FirebaseDatabase.getInstance().getReference("Users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
 
-                                                 Toast.makeText(getActivity(), "User has been registered successfully", Toast.LENGTH_LONG).show();
-                                                 progressBar.setVisibility(View.GONE);
+                                            etemail.setText("");
+                                            etusername.setText("");
+                                            etmobile.setText("");
+                                            etpass.setText("");
 
-                                                 Intent i = new Intent(getActivity(),LoginActivity.class);
-                                                 startActivity(i);
-                                                 CustomIntent.customType(getActivity(),"right-to-left");
-                                             } else {
+                                            Toast.makeText(getActivity(), "User has been registered successfully", Toast.LENGTH_LONG).show();
+                                            progressBar.setVisibility(View.GONE);
 
-                                                 Toast.makeText(getActivity(), "Failed to register in Database ! Try Again !", Toast.LENGTH_SHORT).show();
-                                                 progressBar.setVisibility(View.GONE);
-                                             }
-                                         }
+                                            Intent i = new Intent(getActivity(),LoginActivity.class);
+                                            startActivity(i);
+                                            CustomIntent.customType(getActivity(),"right-to-left");
+                                        } else {
+                                            Toast.makeText(getActivity(), "Failed to register in Database ! Try Again !", Toast.LENGTH_SHORT).show();
+                                            progressBar.setVisibility(View.GONE);
+                                        }
+                                    }
 
-                                     });
-                                 } else {
-                                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                         Toast.makeText(getActivity(), "User with this email already exist.", Toast.LENGTH_SHORT).show();
-                                         //System.out.println("loginerror");
-                                     }
-                                      else {
-                                         Toast.makeText(getActivity(), "Failed to register! Try Again !", Toast.LENGTH_SHORT).show();
-                                         progressBar.setVisibility(View.GONE);
-                                     }
-                                 }
-                             }
-                         });
+                                });
+                            } else {
+                                Toast.makeText(getActivity(), "Failed to register! Try Again !", Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        }
+                    });
 
-             }
-             else
-             {
-                 Toast.makeText(getActivity(), "Failed to register! Try Again !", Toast.LENGTH_SHORT).show();
-             }
 
 
 
@@ -209,42 +195,7 @@ public class SignupTabFragment  extends Fragment {
 
     }
 
-    public int checkEmailExists(String ev, String username,String mobile,String password) {
 
-        String email =  EncodeString(ev);
-        myref = FirebaseDatabase.getInstance().getReference("Users").child(mAuth.getCurrentUser().getUid());
-         EncodeString(email);
-        if(!email.trim().isEmpty() && !username.trim().isEmpty()) {
-            myref.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.child(email).exists())
-                    {
-                        c=1;
-                        Toast.makeText(getActivity(), "Email ID Already Exist !", Toast.LENGTH_SHORT).show();
-
-                    }
-                    else if(snapshot.child(username).exists())
-                    {
-                        c=1;
-                        Toast.makeText(getActivity(), "Username Already Exist !", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-        }
-        else
-        {
-             c=0;
-        }
-        return c;
-    }
 
     public static String EncodeString(String string) {
         return string.replace(".", "_");

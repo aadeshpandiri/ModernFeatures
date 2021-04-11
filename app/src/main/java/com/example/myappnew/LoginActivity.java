@@ -29,8 +29,8 @@ public class LoginActivity extends AppCompatActivity {
 //        google = findViewById(R.id.fab_google);
 //        twitter = findViewById(R.id.fab_twitter);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Login"));
-        tabLayout.addTab(tabLayout.newTab().setText("Signup"));
+        tabLayout.addTab(tabLayout.newTab().setText("LOGIN"));
+        tabLayout.addTab(tabLayout.newTab().setText("REGISTER"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final LoginAdapter adapter = new LoginAdapter(getSupportFragmentManager(),this,tabLayout.getTabCount());

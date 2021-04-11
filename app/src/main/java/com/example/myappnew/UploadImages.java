@@ -121,7 +121,7 @@ public class UploadImages extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         HashMap hashMap = new HashMap();
-                        hashMap.put("UploadsName",imageName);
+                        hashMap.put("UploadsName",imageName.toLowerCase());
                         hashMap.put("imageUrl",uri.toString());
 
                         Dataref.child(key).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {

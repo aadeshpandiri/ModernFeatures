@@ -89,6 +89,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void LoadData(String data) {
+        data=data.toLowerCase();
         Query query = Dataref.orderByChild("UploadsName").startAt(data).endAt(data+"\uf8ff");
 
         options = new FirebaseRecyclerOptions.Builder<Uploads>().setQuery(query,Uploads.class).build();
